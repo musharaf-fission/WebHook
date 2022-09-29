@@ -1,0 +1,134 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8089
+  description: Generated server url
+paths:
+  /student:
+    post:
+      tags:
+      - student
+      operationId: addStudent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /students:
+    get:
+      tags:
+      - student-controller
+      operationId: getAllStudents
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+  /students/{city}:
+    get:
+      tags:
+      - student-controller
+      operationId: getAllStudentsWithCity
+      parameters:
+      - name: city
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+  /getById/{id}:
+    get:
+      tags:
+      - student-controller
+      operationId: getAllStudentsById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Student'
+  /get/{teacher}:
+    get:
+      tags:
+      - student-controller
+      operationId: getAllStudentsWithTeacherName
+      parameters:
+      - name: teacher
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        city:
+          type: string
+        pincode:
+          type: integer
+          format: int32
+    Student:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        rollNo:
+          type: integer
+          format: int32
+        subjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+        address:
+          $ref: '#/components/schemas/Address'
+    Subject:
+      type: object
+      properties:
+        subId:
+          type: integer
+          format: int32
+        subName:
+          type: string
+        teacherName:
+          type: string
