@@ -34,6 +34,7 @@ public class StudentController {
 	}
 	
 	
+	// this is to get students by city
 	@GetMapping("/students/{city}")
 	public ResponseEntity<List<Student>> getAllStudentsWithCity(@PathVariable String city) {
 		return ResponseEntity.status(HttpStatus.OK).body(studentService.getByCityName(city));
