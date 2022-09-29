@@ -26,7 +26,7 @@ public class StudentController {
 		return ResponseEntity.status(HttpStatus.OK).body(studentService.getAllStudents());
 	}
 	
-	
+	// this is to add a student
 	@PostMapping("/student")
 	public ResponseEntity<String> addStudent(@RequestBody Student student) {
 		studentService.addStudent(student);
