@@ -20,6 +20,7 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	//this is to get all students
 	@GetMapping("/students")
 	public ResponseEntity<List<Student>> getAllStudents() {
 		return ResponseEntity.status(HttpStatus.OK).body(studentService.getAllStudents());
